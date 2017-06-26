@@ -29,7 +29,7 @@ Authenticate is needed for all nonpublic methods. DepotAPI uses authenticate met
 ### Hash formula
 This hash must be included in request body when nonpublic methods are called 
 as value of key `hash` in JSON body. Value of `json_data_string` is JSON from 
-data you want send **without** key `hash`.
+data you want send **without** key `hash` and `null` value keys.
 
 #### PHP Example:
 ```php
@@ -176,6 +176,7 @@ Content-Type: application/json
     "depots": [
         {
             "depotId": 1,
+            "enabled": true,
             "shipperId": 1,
             "street": "street_of_depot",
             "houseNumber": 666,
@@ -187,6 +188,7 @@ Content-Type: application/json
         },
         {
             "depotId": 2,
+            "enabled": false,
             "shipperId": 1,
             "street": "street_of_depot",
             "houseNumber": 666,
@@ -219,7 +221,8 @@ depot.
             "zipCode"     : "string",
             "gpsLat"      : "string",
             "gpsLong"     : "string",
-            "phone"       : "string"
+            "phone"       : "string",
+            "enabled"     : "bool|null"
         }
     ],
     "hash"   : "string"
@@ -244,7 +247,8 @@ token: N005NlspOSoOxNX73XUxuhs-t_U
             "zipCode": 46000,
             "gpsLat": "1.0000",
             "gpsLong": "1.0000",
-            "phone": "+420777777777"
+            "phone": "+420777777777",
+            "enabled": false
         },
         {
             "depotId": 2,
@@ -255,7 +259,8 @@ token: N005NlspOSoOxNX73XUxuhs-t_U
             "zipCode": 46000,
             "gpsLat": "1.0000",
             "gpsLong": "1.0000",
-            "phone": "+420777777777"
+            "phone": "+420777777777",
+            "enabled": true
         }
      ],
     "hash": "your_generated_hash"
