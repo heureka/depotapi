@@ -11,8 +11,11 @@ DepotAPI is tool for managing shop and shipper depots.
 - [insertShopDepots](#insertshopdepots-shop) (shop)
 - [deleteShopDepots](#deleteshopdepots-shop) (shop)
 
+## Changelog
+- 2019/07 - Removed required `hash` fields. Dangling fields are ignored for backwards compatibility.
+
 ## Authenticate
-Authenticate is needed for all nonpublic methods. DepotAPI uses authenticate method based on HMAC. First you need to get [login information](https://login.heureka.cz/register/) and api key (to obtain write request to podpora@heureka.cz). Then send your username, password and api key to login request and you get back **4 hours valid** token. This token has to be sent in header for communication in secured methods. All data you sent through nonpublic methods to Heureka must be signed by [hash](#hash-formula).
+Authentication is required for all non-public methods. DepotAPI uses token based authentication. First you need to get [login information](https://login.heureka.cz/register/) and an API key (to obtain one, write a request to podpora@heureka.cz). Then send your username, password and API key together to login endpoint and you will get back a token, which will be **valid for 4 hours**. This token has to be send in HTTP header when calling secured methods.
 
 ### Authenticate URL
     https://api.heureka.cz/depot-api/v1/authenticate/login
@@ -26,16 +29,6 @@ Authenticate is needed for all nonpublic methods. DepotAPI uses authenticate met
 }
 ```
 
-### Hash formula
-This hash must be included in request body when nonpublic methods are called 
-as value of key `hash` in JSON body. Value of `json_data_string` is JSON from 
-data you want send **without** key `hash` and `null` value keys.
-
-#### PHP Example:
-```php
-hash_hmac('sha256', $json_data_string, $your_api_key)
-```
-
 ### Example
 #### Request
 ```HTTP
@@ -44,9 +37,9 @@ Host: api.heureka.cz
 Content-Type: application/json
 
 {
-    "depotApiKey":"your_unique_api_key",
-    "fermiId":"example@heureka.cz",
-    "password":"your_password"
+    "depotApiKey": "your_unique_api_key",
+    "fermiId": "example@heureka.cz",
+    "password": "your_password"
 }
 ```
 
@@ -224,8 +217,7 @@ depot.
             "phone"       : "string",
             "enabled"     : "bool|null"
         }
-    ],
-    "hash"   : "string"
+    ]
 }
 ```
 ### Example
@@ -262,8 +254,7 @@ token: N005NlspOSoOxNX73XUxuhs-t_U
             "phone": "+420777777777",
             "enabled": true
         }
-     ],
-    "hash": "your_generated_hash"
+    ]
 }
 ```
 #### Response
@@ -285,8 +276,7 @@ This method is used for deleting existing shipper depots based on his id.
 ```JSON
 {
     "depotId"   : "int",
-    "shipperId" : "int",
-    "hash"      : "string"
+    "shipperId" : "int"
 }
 ```
 
@@ -300,8 +290,7 @@ token: N005NlspOSoOxNX73XUxuhs-t_U
 
 {
     "depotId": 1,
-    "shipperId": 1,
-    "hash": "your_generated_hash"
+    "shipperId": 1
 }
 ```
 #### Response
@@ -322,8 +311,7 @@ This method is used for obtaining a list of all your depots
 ### Request definition
 ```JSON
 {
-    "shopId" : "int",
-    "hash"   : "string"
+    "shopId" : "int"
 }
 ```
 
@@ -337,8 +325,7 @@ Content-Type: application/json
 token: N005NlspOSoOxNX73XUxuhs-t_U
 
 {
-    "shopId": 1,
-    "hash": "your_generated_hash"
+    "shopId": 1
 }
 ```
 #### Response
@@ -397,8 +384,7 @@ null.
             "gpsLong"     : "string",
             "phone"       : "string"
         }
-    ],
-    "hash"  : "string"
+    ]
 }
 ```
 ### Example
@@ -436,8 +422,7 @@ token: N005NlspOSoOxNX73XUxuhs-t_U
             "gpsLong": "1.0000",
             "phone": "+420773595388"
         }
-    ],
-    "hash": "your_generated_hash"
+    ]
 }
 ```
 #### Response
@@ -482,8 +467,7 @@ This function is used for deleting depots based on their ids
             "depotId" : "int",
             "shopId"  : "int"
         }
-    ],
-    "hash"   : "string"
+    ]
 }
 ```
 ### Example
@@ -505,14 +489,13 @@ token: N005NlspOSoOxNX73XUxuhs-t_U
             "depotId": 2,
             "shopId": 1
         }
-    ],
-    "hash": "your_generated_hash"
-}    
+    ]
+}
 ```
 #### Response
 ```JSON
 {
-    "code"    : 200,
-    "message" : "ok"
+    "code": 200,
+    "message": "ok"
 }
 ```
