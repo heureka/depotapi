@@ -15,7 +15,7 @@ DepotAPI is tool for managing shop and shipper depots.
 - 2019/07 - Removed required `hash` fields. Dangling fields are ignored for backwards compatibility.
 
 ## Authenticate
-Authentication is required for all non-public methods. DepotAPI uses token based authentication. First you need to get [login information](https://login.heureka.cz/register/) and an API key (to obtain one, write a request to podpora@heureka.cz). Then send your username, password and API key together to login endpoint and you will get back a token, which will be **valid for 4 hours**. This token has to be send in HTTP header when calling secured methods.
+Authentication is required for all non-public methods. DepotAPI uses token based authentication. First you need to get [cz login information](https://ucet.heureka.cz/registrace) / [sk login information](https://ucet.heureka.sk/registracia) and an API key (to obtain one, write a request to [podpora@heureka.cz](mailto:podpora@heureka.cz)). Then send your username, password and API key together to login endpoint and you will get back a token, which will be **valid for 4 hours**. This token has to be send in HTTP header when calling secured methods.
 
 ### Authenticate URL
     https://api.heureka.cz/depot-api/v1/authenticate/login
