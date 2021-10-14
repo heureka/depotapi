@@ -171,24 +171,28 @@ Content-Type: application/json
             "depotId": 1,
             "enabled": true,
             "shipperId": 1,
+            "name": "name_of_depot",
             "street": "street_of_depot",
             "houseNumber": 666,
             "city": "city_of_depot",
             "zipCode": 46000,
             "gpsLat": "1.0000",
             "gpsLong": "1.0000",
+            "originalId": "CZ-1",
             "phone": "+420777777777"
         },
         {
             "depotId": 2,
             "enabled": false,
             "shipperId": 1,
+            "name": "name_of_depot",
             "street": "street_of_depot",
             "houseNumber": 666,
             "city": "city_of_depot",
             "zipCode": 46000,
             "gpsLat": "1.0000",
             "gpsLong": "1.0000",
+            "originalId": "CZ-2",
             "phone": "+420777777777"
         }
     ]
@@ -208,12 +212,14 @@ depot.
         {
             "depotId"     : "int",
             "shipperId"   : "int",
+            "name"        : "string|null",
             "street"      : "string",
             "houseNumber" : "string",
             "city"        : "string",
             "zipCode"     : "string",
             "gpsLat"      : "string",
             "gpsLong"     : "string",
+            "originalId"  : "string|null",
             "phone"       : "string",
             "enabled"     : "bool|null"
         }
@@ -233,24 +239,28 @@ token: N005NlspOSoOxNX73XUxuhs-t_U
         {
             "depotId": 1,
             "shipperId": 1,
+            "name": "name_of_depot",
             "street": "street_of_depot",
             "houseNumber": 666,
             "city": "city_of_depot",
             "zipCode": 46000,
             "gpsLat": "1.0000",
             "gpsLong": "1.0000",
+            "originalId": "CZ-1",
             "phone": "+420777777777",
             "enabled": false
         },
         {
             "depotId": 2,
             "shipperId": 1,
+            "name": "name_of_depot",
             "street": "street_of_depot",
             "houseNumber": 666,
             "city": "city_of_depot",
             "zipCode": 46000,
             "gpsLat": "1.0000",
             "gpsLong": "1.0000",
+            "originalId": "CZ-2",
             "phone": "+420777777777",
             "enabled": true
         }
